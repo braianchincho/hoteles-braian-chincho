@@ -60,12 +60,12 @@ class DetalleHotel extends React.Component {
                 </Card>
                 <Card>
                     <View style={{flex:1,flexDirection:'row'}}>
-                        <View style={{flex:1,flexDirection:'row',width:80}}>
+                        <View style={{flex:1,flexDirection:'row',width:130}}>
                            <Text style = {[robotoWeights.regular,{fontSize:17,color:'#000000'}]}>
                               Habitaciones
                             </Text>
                         </View>
-                        <View style={{flex:1,flexDirection:'row',marginLeft:25}}>
+                        <View style={{flex:1,flexDirection:'row'}}>
                             <Icon name="users" size={20} color="#000000" style={{opacity:0.54}}/> 
                             <Text > {this.countPerson(hotel.habitaciones)}</Text>
                         </View>

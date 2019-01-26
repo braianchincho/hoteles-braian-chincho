@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, Image, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import StarRating from 'react-native-star-rating';
-import { Card, Rating,Button } from 'react-native-elements';
+import { Card, Rating, Button } from 'react-native-elements';
 import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
 import Info from './Info.js'
 import { Actions } from 'react-native-router-flux';
@@ -39,24 +39,34 @@ class HotelList extends React.Component {
           {
             hoteles.map((item, index) => (
               <Card
-                title={item.name}
+                // title={item.name}
                 image={{ uri: item.foto }}
                 key={item.id}
               >
-                <StarRatingBar
-                  readOnly={false}
-                  continuous={false}
-                  score={item.ranting}
-                  onStarValueChanged={(score) => { this.puntuar(score, index) }}
-                />
-                <Button
-                  // icon={<Icon name='code' color='#ffffff' />}
-                  backgroundColor='#03A9F4'
-                  buttonStyle={{flex:1,padding:15, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-                  title='Ver ahora' 
-                  onPress={() =>{Actions.detalleHotel({hotel:item})}}
+                <Text style={{ fontSize: 18 }}>
+                  {item.name}
+                </Text>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <StarRatingBar
+                    readOnly={false}
+                    continuous={false}
+                    score={item.ranting}
+                    onStarValueChanged={(score) => { this.puntuar(score, index) }}
                   />
-                
+                  <View style={{flex: 1, flexDirection: 'column'}}>
+                    <Text>Precio por noche</Text>
+                    <Text>ARS {item.precio}</Text>
+                  </View>
+                </View>
+                <View style={{padding:14}}>
+                  <Button
+                    // icon={<Icon name='code' color='#ffffff' />}
+                    backgroundColor='#03A9F4'
+                    buttonStyle={{ flex: 1, padding: 15, borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
+                    title='Ver ahora'
+                    onPress={() => { Actions.detalleHotel({ hotel: item }) }}
+                   />
+                </View>
               </Card>
             ))
           }
