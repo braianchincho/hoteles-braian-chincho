@@ -14,12 +14,15 @@ class HotelList extends React.Component {
     hoteles: Info.hoteles
 
   };//end state
-  componentWillMount() {
-
-  }
-
-  alertItemName(item) {
-    alert(item.name);
+  filtraHoteles(){
+    let hotelesFilter = this.state.hoteles;
+    if(this.state.firstQuery){
+      hotelesFilter = this.state.hoteles.filter((item) => {
+        if(item.name.includes(this.state.firstQuery)) return item;
+      });
+    }
+    
+    return hotelesFilter;
   }
   puntuar(ranking, index) {
     let copy = this.state.hoteles;
@@ -27,13 +30,15 @@ class HotelList extends React.Component {
     this.setState({ hoteles: copy })
   }
   render() {
-    const { firstQuery, hoteles } = this.state;
+    const { firstQuery } = this.state;
+    let hoteles = this.filtraHoteles()
     return (
       <View style={[styles.container, styles.horizontal]}>
         <ScrollView >
           <Searchbar
             placeholder="Buscar"
             onChangeText={query => { this.setState({ firstQuery: query }); }}
+            onIconPress={()=> {hoteles=this.filtraHoteles()}}
             value={firstQuery}
           />
           {
