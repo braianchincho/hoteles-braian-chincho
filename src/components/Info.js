@@ -13,6 +13,16 @@ const Info ={
             longitudeDelta: 0.0421,
           },
           direccion:'Fray Luis Beltran Y Cardenosa B Poeta Lugones - CC Libertad, 5008 Córdoba',
+          servicios:{
+            cancelacion:'Las condiciones de cancelación y de pago por adelantado pueden variar según el tipo de pago',
+            opcionales:'Los siguientes cargos y depósitos se pagan directamente en el hotel al recibir el servicio',
+            incluidos:'Desayuno incluido'
+          },
+          descripcion:{
+            horaEntrada:9,
+            horaSalida:21,
+            texto:''
+          },
           habitaciones:[
             {
               tipo:'Standard',
@@ -21,7 +31,7 @@ const Info ={
                 {tipo:'Doble',cantidad:1}
               ]
             },
-                        {
+            {
               tipo:'Standard',
               personas:4,
               camas:[
@@ -70,6 +80,16 @@ const Info ={
             longitudeDelta: 0.0421,
           },
           direccion:'Avenida La Voz del Interior 7000, Córdoba',
+          servicios:{
+            cancelacion:'Las condiciones de cancelación y de pago por adelantado pueden variar según el tipo de pago',
+            opcionales:'Los siguientes cargos y depósitos se pagan directamente en el hotel al recibir el servicio',
+            incluidos:'Desayuno incluido'
+          },
+          descripcion:{
+            horaEntrada:9,
+            horaSalida:21,
+            texto:''
+          },
           habitaciones:[
             {
               tipo:'Standard',
@@ -126,6 +146,16 @@ const Info ={
             longitudeDelta: 0.0421,
           },
           direccion:'Duarte Quirós 1300, X5000 Córdoba',
+          servicios:{
+            cancelacion:'Las condiciones de cancelación y de pago por adelantado pueden variar según el tipo de pago',
+            opcionales:'Los siguientes cargos y depósitos se pagan directamente en el hotel al recibir el servicio',
+            incluidos:'Desayuno incluido'
+          },
+          descripcion:{
+            horaEntrada:9,
+            horaSalida:21,
+            texto:''
+          },
           habitaciones:[
             {
               tipo:'Standard',
@@ -176,6 +206,16 @@ const Info ={
             longitudeDelta: 0.0421,
           },
           direccion:'Corrientes 207, X5022FGE Córdoba',
+          servicios:{
+            cancelacion:'Las condiciones de cancelación y de pago por adelantado pueden variar según el tipo de pago',
+            opcionales:'Los siguientes cargos y depósitos se pagan directamente en el hotel al recibir el servicio',
+            incluidos:'Desayuno incluido'
+          },
+          descripcion:{
+            horaEntrada:9,
+            horaSalida:21,
+            texto:''
+          },
           habitaciones:[
             {
               tipo:'Standard',
