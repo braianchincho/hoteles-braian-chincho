@@ -9,6 +9,7 @@ import Habitaciones from './Habitaciones.js'
 import Descripcion from './Descripcion.js'
 import Servicios from './Servicios.js';
 import { robotoWeights } from 'react-native-typography'
+import { Ubicacion } from './Ubicacion.js'
 
 class DetalleHotel extends React.Component {
     state = { verComentarios: false }
@@ -29,38 +30,31 @@ class DetalleHotel extends React.Component {
         const { hotel } = this.props
         return (
             <View style={{ flex: 1 }}>
-                {/* <Card
-                    image={{ uri: hotel.foto }}
-                    key={hotel.id}
-                    style={{ flex: 1 }}
-                >
-                    <StarRatingBar
-                        readOnly={true}
-                        continuous={false}
-                        score={hotel.ranting}
-                    //onStarValueChanged={(score) => { this.puntuar(score, index) }}
-                    />
-                    <Text>{hotel.name}</Text>
-                </Card> */}
-                <Tile
-                    imageSrc={{ uri: hotel.foto }}
-                    title={hotel.name}
-                    contentContainerStyle={{ height: 40 }}
-                >
-                    <StarRatingBar
-                        readOnly={true}
-                        continuous={false}
-                        score={hotel.ranting}
-                    //onStarValueChanged={(score) => { this.puntuar(score, index) }}
-                    />
-                </Tile>
                 <ScrollView>
-                    <Card title={'Ubicación'}>
+                    <Tile
+                        imageSrc={{ uri: hotel.foto }}
+                        imageContainerStyle={{ height: 30 }}
+                    />
+                    {/* <Ubicacion hotel={hotel}/> */}
+                    <Card title={hotel.name}>
                         <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <StarRatingBar
+                                readOnly={true}
+                                continuous={false}
+                                score={hotel.ranting}
+                            />
+                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', padding: 8 }}>
                             <Icon name="location-arrow" size={20} color="#000000" style={{ padding: 5 }} />
                             <Text style={[robotoWeights.regular, { fontSize: 14, marginRight: 5 }]}>
                                 {hotel.direccion}
                             </Text>
+                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', padding: 8 }}>
+                            <MapView
+                                style={{ flex: 1, width: 250, height: 250 }}
+                                region={hotel.region}
+                            />
                         </View>
                     </Card>
                     <Card >
@@ -74,17 +68,15 @@ class DetalleHotel extends React.Component {
                     </Card>
                     <Card>
                         <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ flex: 1, flexDirection: 'row', width: 200 }}>
-                                <Text style={[robotoWeights.regular, { fontSize: 17, color: '#000000' }]}>
-                                    Habitaciones
-                            </Text>
-                            </View>
                             <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Icon name="users" size={20} color="#000000" style={{ opacity: 0.54 }} />
+                                <Text style={[robotoWeights.regular, { fontSize: 18, color: '#000000' }]}>
+                                    Habitaciones
+                               </Text>
+                                <Icon name="users" size={20} color="#000000" style={styles.habitacionRow} />
                                 <Text > {this.countPerson(hotel.habitaciones)}</Text>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Icon name="bed" size={20} color="#000000" style={{ opacity: 0.54 }} />
+                                <Icon name="bed" size={20} color="#000000" style={styles.habitacionRow} />
                                 <Text> {hotel.habitaciones.length}</Text>
                             </View>
                         </View>
@@ -110,7 +102,8 @@ const styles = {
         position: 'relative',
         flex: 1,
         padding: 10,
-    }
+    },
+    habitacionRow:{opacity: 0.54 ,marginLeft:20}
 };
 
 export default DetalleHotel;

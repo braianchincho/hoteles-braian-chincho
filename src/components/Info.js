@@ -7,8 +7,8 @@ const Info ={
           ranting: 3,
           precio: 1500,
           region : {
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: -31.3633277,
+            longitude: -64.2194925,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           },
@@ -74,8 +74,8 @@ const Info ={
           ranting: 5,
           precio: 2500,
           region :{
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: -31.337473561095383,
+            longitude: -64.20736312866211,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           },
@@ -140,8 +140,8 @@ const Info ={
           ranting: 4,
           precio: 1900,
           region :{
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: -31.4141997,
+            longitude: -64.20247369999998,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           },
@@ -200,8 +200,8 @@ const Info ={
           ranting: 3,
           precio: 1460,
           region: {
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: -31.4201866,
+            longitude: -64.18262279999999,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           },
