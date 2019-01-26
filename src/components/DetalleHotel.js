@@ -4,11 +4,11 @@ import { Card, ListItem } from 'react-native-elements';
 import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
 import MapView from 'react-native-maps'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Icon as IconEnty} from 'react-native-vector-icons/Entypo';
 import Comentarios from './Comentarios.js'
 import Habitaciones from './Habitaciones.js'
 import Descripcion from './Descripcion.js'
 import Servicios from './Servicios.js';
+import { robotoWeights } from 'react-native-typography'
 class DetalleHotel extends React.Component {
     state = { verComentarios:false}
     countPerson(habitaciones){
@@ -43,13 +43,15 @@ class DetalleHotel extends React.Component {
                 </Card>
                 <Card title={'Ubicación'}>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <Icon name="location-arrow" size={20} color="#900" />
-                        <Text>{hotel.direccion}</Text>
+                        <Icon name="location-arrow" size={20} color="#000000" style={{padding:5}}/>
+                        <Text style = {[robotoWeights.regular,{fontSize:14,marginRight:5}]}>
+                           {hotel.direccion}
+                        </Text>
                     </View>
                 </Card>
                 <Card >
                     <TouchableOpacity onPress= {()=> this.verComentarios()} >
-                      <Text style={{fontSize:18}}>Comentarios</Text>
+                      <Text style = {[robotoWeights.regular,{fontSize:18,color:'#000000'}]}>Comentarios</Text>
                     </TouchableOpacity>
                     {  
                      this.state.verComentarios ? (<Comentarios comentarios={hotel.opiniones} />):
@@ -58,12 +60,14 @@ class DetalleHotel extends React.Component {
                 </Card>
                 <Card>
                     <View style={{flex:1,flexDirection:'row'}}>
-                        <View style={{flex:1,flexDirection:'row'}}>
-                           <Text>Habitaciones</Text>
+                        <View style={{flex:1,flexDirection:'row',width:80}}>
+                           <Text style = {[robotoWeights.regular,{fontSize:17,color:'#000000'}]}>
+                              Habitaciones
+                            </Text>
                         </View>
-                        <View style={{flex:1,flexDirection:'row',marginLeft:15}}>
+                        <View style={{flex:1,flexDirection:'row',marginLeft:25}}>
                             <Icon name="users" size={20} color="#000000" style={{opacity:0.54}}/> 
-                            <Text> {this.countPerson(hotel.habitaciones)}</Text>
+                            <Text > {this.countPerson(hotel.habitaciones)}</Text>
                         </View>
                         <View style={{flex:1,flexDirection:'row'}}>
                             <Icon name="bed" size={20} color="#000000" style={{opacity:0.54}} /> 
