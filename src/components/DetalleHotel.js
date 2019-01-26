@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, ImageBackground,FlatList, Text, View, TouchableOpacity } from 'react-native';
-import { Card, ListItem } from 'react-native-elements';
+import { ScrollView, Image, ImageBackground, FlatList, Text, View, TouchableOpacity } from 'react-native';
+import { Card, ListItem, Tile } from 'react-native-elements';
 import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
 import MapView from 'react-native-maps'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -9,26 +9,27 @@ import Habitaciones from './Habitaciones.js'
 import Descripcion from './Descripcion.js'
 import Servicios from './Servicios.js';
 import { robotoWeights } from 'react-native-typography'
+
 class DetalleHotel extends React.Component {
-    state = { verComentarios:false}
-    countPerson(habitaciones){
-        let acum=0;
-        if(habitaciones && Array.isArray(habitaciones)){
-            for(let i=0; i<habitaciones.length;i++){
+    state = { verComentarios: false }
+    countPerson(habitaciones) {
+        let acum = 0;
+        if (habitaciones && Array.isArray(habitaciones)) {
+            for (let i = 0; i < habitaciones.length; i++) {
                 acum += habitaciones[i].personas;
             }
         }
-        return acum;    
+        return acum;
     }
-    verComentarios(){
+    verComentarios() {
         let flag = !this.state.verComentarios;
-        this.setState({verComentarios:flag})        
+        this.setState({ verComentarios: flag })
     }
     render() {
         const { hotel } = this.props
         return (
-            <ScrollView style={{ flex: 1 }}>
-                <Card
+            <View style={{ flex: 1 }}>
+                {/* <Card
                     image={{ uri: hotel.foto }}
                     key={hotel.id}
                     style={{ flex: 1 }}
@@ -40,45 +41,60 @@ class DetalleHotel extends React.Component {
                     //onStarValueChanged={(score) => { this.puntuar(score, index) }}
                     />
                     <Text>{hotel.name}</Text>
-                </Card>
-                <Card title={'Ubicación'}>
-                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <Icon name="location-arrow" size={20} color="#000000" style={{padding:5}}/>
-                        <Text style = {[robotoWeights.regular,{fontSize:14,marginRight:5}]}>
-                           {hotel.direccion}
-                        </Text>
-                    </View>
-                </Card>
-                <Card >
-                    <TouchableOpacity onPress= {()=> this.verComentarios()} >
-                      <Text style = {[robotoWeights.regular,{fontSize:18,color:'#000000'}]}>Comentarios</Text>
-                    </TouchableOpacity>
-                    {  
-                     this.state.verComentarios ? (<Comentarios comentarios={hotel.opiniones} />):
-                     (<Text onPress= {()=> this.verComentarios()}>Ver comentarios</Text>)       
-                    }
-                </Card>
-                <Card>
-                    <View style={{flex:1,flexDirection:'row'}}>
-                        <View style={{flex:1,flexDirection:'row',width:130}}>
-                           <Text style = {[robotoWeights.regular,{fontSize:17,color:'#000000'}]}>
-                              Habitaciones
+                </Card> */}
+                <Tile
+                    imageSrc={{ uri: hotel.foto }}
+                    title={hotel.name}
+                    contentContainerStyle={{ height: 40 }}
+                >
+                    <StarRatingBar
+                        readOnly={true}
+                        continuous={false}
+                        score={hotel.ranting}
+                    //onStarValueChanged={(score) => { this.puntuar(score, index) }}
+                    />
+                </Tile>
+                <ScrollView>
+                    <Card title={'Ubicación'}>
+                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <Icon name="location-arrow" size={20} color="#000000" style={{ padding: 5 }} />
+                            <Text style={[robotoWeights.regular, { fontSize: 14, marginRight: 5 }]}>
+                                {hotel.direccion}
                             </Text>
                         </View>
-                        <View style={{flex:1,flexDirection:'row'}}>
-                            <Icon name="users" size={20} color="#000000" style={{opacity:0.54}}/> 
-                            <Text > {this.countPerson(hotel.habitaciones)}</Text>
+                    </Card>
+                    <Card >
+                        <TouchableOpacity onPress={() => this.verComentarios()} >
+                            <Text style={[robotoWeights.regular, { fontSize: 18, color: '#000000' }]}>Comentarios</Text>
+                        </TouchableOpacity>
+                        {
+                            this.state.verComentarios ? (<Comentarios comentarios={hotel.opiniones} />) :
+                                (<Text onPress={() => this.verComentarios()}>Ver comentarios</Text>)
+                        }
+                    </Card>
+                    <Card>
+                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <View style={{ flex: 1, flexDirection: 'row', width: 200 }}>
+                                <Text style={[robotoWeights.regular, { fontSize: 17, color: '#000000' }]}>
+                                    Habitaciones
+                            </Text>
+                            </View>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <Icon name="users" size={20} color="#000000" style={{ opacity: 0.54 }} />
+                                <Text > {this.countPerson(hotel.habitaciones)}</Text>
+                            </View>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <Icon name="bed" size={20} color="#000000" style={{ opacity: 0.54 }} />
+                                <Text> {hotel.habitaciones.length}</Text>
+                            </View>
                         </View>
-                        <View style={{flex:1,flexDirection:'row'}}>
-                            <Icon name="bed" size={20} color="#000000" style={{opacity:0.54}} /> 
-                            <Text> {hotel.habitaciones.length}</Text>
-                        </View>
-                    </View>
-                   <Habitaciones habitaciones = {hotel.habitaciones}/>
-                </Card>
-                <Descripcion descripcion={hotel.descripcion}/>
-                <Servicios servicio={hotel.servicios}/>
-            </ScrollView>
+                        <Habitaciones habitaciones={hotel.habitaciones} />
+                    </Card>
+                    <Descripcion descripcion={hotel.descripcion} />
+                    <Servicios servicio={hotel.servicios} />
+
+                </ScrollView>
+            </View>
         );
     }//end render
 }
